@@ -1,0 +1,33 @@
+@startuml
+
+abstract class Strategy{
+    +AlgorithmInterface()
+}
+note right: 策略类，定义所有支持的算法的公共接口
+class ConcreteStrategyA{
+    +AlgorithmInterface()
+}
+class ConcreteStrategyB{
+    +AlgorithmInterface()
+}
+class ConcreteStrategyC{
+    +AlgorithmInterface()
+}
+class Context{
+    +ContextInterface()
+}
+note left: Context 上下文，\n用ConcreteStrategy来配置维护，\n一个对Strategy对象的引用
+Context --o Strategy
+note "具体策略类，封装了具体的算法或行为，继承与Strategy" as N1
+ConcreteStrategyA .. N1
+ConcreteStrategyB .. N1
+ConcreteStrategyC .. N1
+
+Strategy <|--ConcreteStrategyA
+Strategy <|--ConcreteStrategyB
+Strategy <|--ConcreteStrategyC
+
+
+
+
+@enduml
