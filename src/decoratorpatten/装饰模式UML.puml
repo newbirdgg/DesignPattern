@@ -1,0 +1,30 @@
+@startuml
+abstract class Component{
+    +Operation()
+}
+note right: Component是定义一个对象接口，\n可以给这些对象动态地添加职责
+class ConcreteComponent{
+    +Operation()
+}
+Component <|-- ConcreteComponent
+note bottom of ConcreteComponent: ConcreteComponent是定义了\n一个具体的对象，也可以给\n这个对象添加一些职责
+abstract class Decorator{
+    +Operation()
+}
+Component <|-- Decorator
+Component --o Decorator
+note right: Decorator,装饰了抽象类，\n 继承了Component,从外类\n来扩展Component类的功能，\n但对于Component来说，是\n无需知道Decorator的存在的。
+class ConcreteDecoratorA{
+    -addedState:String
+    +Operation()
+}
+Decorator <|-- ConcreteDecoratorA
+class ConcreteDecoratorB{
+    +Operation()
+    -AddedBehavior()
+}
+Decorator <|-- ConcreteDecoratorB
+note "ConcreteDecorator就是具体的装饰对象，\n起到给Component添加职责的功能" as N1
+ConcreteDecoratorA .. N1
+ConcreteDecoratorB .. N1
+@enduml
